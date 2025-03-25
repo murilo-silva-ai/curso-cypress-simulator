@@ -10,24 +10,26 @@ describe('Cypress simulator outputs', () => {
 
   })
 
-  it.only('emula um comando cypress com sucesso', () => {
+  context('it emulates cypress commands', () => {
+    it.only('passes', () => {
 
-  })
+    })
 
-  it('error: invalid cypress command', () => {
+    it('error: invalid cypress command', () => {
 
-  })
+    })
 
-  it('error: valid command without parentheses', () => {
+    it('error: valid command without parentheses', () => {
 
-  })
+    })
 
-  it('output: warning', () => {
+    it('output: warning', () => {
 
-  })
+    })
 
-  it('help', () => {
+    it('help', () => {
 
+    })
   })
 
   it('maximize/minimize output session', () => {
