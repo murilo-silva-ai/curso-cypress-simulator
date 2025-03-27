@@ -1,7 +1,7 @@
 describe('Cypress simulator outputs', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('./src/index.html?skipCaptcha=true', {
+        cy.visit('./src/index.html?skipCaptcha=true&chancesOfError=0', {
             onBeforeLoad(win) {
                 win.localStorage.setItem('cookieConsent', 'accepted')
             }
@@ -10,6 +10,7 @@ describe('Cypress simulator outputs', () => {
     })
 
     context('it emulates cypress commands', () => {
+        
         it('passes successfully', () => {
             cy.run("cy.get('#body')")
 
@@ -106,6 +107,25 @@ describe('Cypress simulator outputs', () => {
         cy.get('button[aria-label="Open menu"]').click()
 
         cy.contains('button', 'Logout').should('not.be.visible')
+    })
+})
+
+describe('Error in the matrix', () => {
+    beforeEach(() => {
+        cy.login()
+        cy.visit('./src/index.html?skipCaptcha=true&chancesOfError=1', {
+            onBeforeLoad(win) {
+                win.localStorage.setItem('cookieConsent', 'accepted')
+            }
+        })
+        cy.injectAxe()
+    })
+
+    it('errors out with a glitch in the Matrix', () => {
+        cy.run("cy.log('it works!')")
+
+        cy.checkA11y()
+        cy.get('#outputArea', {timeout: 6000}).should('contain.text', "There's a glitch in the Matrix.")
     })
 })
 
