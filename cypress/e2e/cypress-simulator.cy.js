@@ -14,7 +14,7 @@ describe('Cypress simulator outputs', () => {
 
       cy.get('#runButton').should('be.enabled')
 
-      // cy.get('#codeInput').clear()
+      cy.get('#codeInput').clear()
 
       cy.get('#runButton').should('not.be.enabled')
     })
