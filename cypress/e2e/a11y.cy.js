@@ -132,7 +132,7 @@ describe('Error in the matrix', () => {
 describe('Cypress simulator - Cookies Consent', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('./src/index.html?skipCaptcha=true')
+        cy.visit('./src/index.html?skipCaptcha=true&chancesOfError=0')
         cy.injectAxe()
     })
 
@@ -156,7 +156,7 @@ describe('Cypress simulator - Cookies Consent', () => {
 
 describe('Cypress simulator - Captcha and Login', () => {
     beforeEach(() => {
-        cy.visit('./src/index.html?skipCaptcha=false')
+        cy.visit('./src/index.html?skipCaptcha=false&chancesOfError=0')
         cy.contains('button', 'Login').click()
         cy.injectAxe()
     })

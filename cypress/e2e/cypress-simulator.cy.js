@@ -1,7 +1,7 @@
 describe('Cypress simulator outputs', () => {
   beforeEach(() => {
     cy.login()
-    cy.visit('./src/index.html?skipCaptcha=true', {
+    cy.visit('./src/index.html?skipCaptcha=true&chancesOfError=0', {
       onBeforeLoad(win) {
         win.localStorage.setItem('cookieConsent', 'accepted')
       }
@@ -55,7 +55,7 @@ describe('Cypress simulator outputs', () => {
 describe('Cypress simulator - Cookies Consent', () => {
   beforeEach(() => {
     cy.login()
-    cy.visit('./src/index.html?skipCaptcha=true')
+    cy.visit('./src/index.html?skipCaptcha=true&chancesOfError=0')
   })
 
   it('Decline cookies', () => {
