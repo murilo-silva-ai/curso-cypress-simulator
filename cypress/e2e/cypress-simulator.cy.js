@@ -1,12 +1,11 @@
 describe('Cypress simulator outputs', () => {
   beforeEach(() => {
+    cy.login()
     cy.visit('./src/index.html?skipCaptcha=true', {
       onBeforeLoad(win) {
         win.localStorage.setItem('cookieConsent', 'accepted')
       }
     })
-    cy.contains('button', 'Login').click()
-    cy.contains('h1', 'Cypress Simulator').should('be.visible')
   })
 
   context('it emulates cypress commands', () => {
@@ -21,8 +20,7 @@ describe('Cypress simulator outputs', () => {
     })
 
     it('Reset text area and code output on logout and login', () => {
-      cy.get('#codeInput').type("cy.log(message)")
-      cy.contains('button', 'Run').click()
+      cy.run("cy.log(message)")
       cy.get('#outputArea', { timeout: 6000 })
         .should('contain.text', 'Success:')
         .and('contain.text', 'cy.log(message) // Logged message message')
@@ -56,9 +54,8 @@ describe('Cypress simulator outputs', () => {
 
 describe('Cypress simulator - Cookies Consent', () => {
   beforeEach(() => {
+    cy.login()
     cy.visit('./src/index.html?skipCaptcha=true')
-    cy.contains('button', 'Login').click()
-    cy.contains('h1', 'Cypress Simulator').should('be.visible')
   })
 
   it('Decline cookies', () => {
